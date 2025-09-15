@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Chuck Norris</title>
+    <style>
+        body {
+            background-color: #e6f0ff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            color: #003366;
+        }
+
+        h1 {
+            color: #0055aa;
+        }
+
+        #bromaBtn {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #bromaBtn:hover {
+            background-color: #cf0202;
+            transform: scale(1.05);
+        }
+
+        #bromaBtn:active {
+            background-color: #ee0a1d;
+            transform: scale(0.95);
+        }
+
+        #broma {
+            margin-top: 20px;
+            font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #002244;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Chuck Norris</h1>
+    <button id="bromaBtn">¡Obtiene una broma!</button>
+    <p id="broma"></p>
+
+    <script>
+        const boton = document.getElementById('bromaBtn');
+        boton.addEventListener('click', () => {
+            boton.style.backgroundColor = '#3399ff';
+            setTimeout(() => {
+                boton.style.backgroundColor = '#0077cc';
+            }, 200);
+
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('broma').innerText = data.value;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
